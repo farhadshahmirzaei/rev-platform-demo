@@ -1,0 +1,6 @@
+{
+  "name": "Rev Platform",
+  "description": "Rev Platform — The operating system for your AI workforce. Autonomous AI employees with roles, permissions, and trust levels, plus the Rev workspace web app.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

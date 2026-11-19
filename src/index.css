@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #ffffff;
+    color: #1e293b;
+    overflow-x: clip;
+  }
+
+  [dir="rtl"],
+  [dir="rtl"] body {
+    font-family: 'Vazirmatn', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+.bg-rev-teal {
+  background-color: #3ab0a2;
+}
+
+.text-rev-teal {
+  color: #3ab0a2;
+}
+
+.border-rev-teal {
+  border-color: #3ab0a2;
+}
+
+.bg-rev-sand {
+  background-color: #f4e3b5;
+}
+
+.text-rev-sand {
+  color: #8c7329;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Exploded View Background Keyframes & Scroll-Driven CSS Transforms */
+@keyframes explodedFloatSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(1.5deg);
+  }
+}
+
+@keyframes explodedPulseRing {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes explodedDriftDiagonal {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(6px, -8px, 0);
+  }
+}
+
+.exploded-layer {
+  will-change: transform, opacity;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease-out;
+  transform: translate3d(
+    calc(var(--explode-x, 0px) * var(--explode-progress, 0)),
+    calc(var(--explode-y, 0px) * var(--explode-progress, 0)),
+    0
+  )
+  rotate(calc(var(--explode-rot, 0deg) * var(--explode-progress, 0)))
+  scale(calc(1 + var(--explode-scale, 0) * var(--explode-progress, 0)));
+}
+
+.exploded-float-a {
+  animation: explodedFloatSlow 9s ease-in-out infinite;
+}
+
+.exploded-float-b {
+  animation: explodedDriftDiagonal 11s ease-in-out infinite;
+}
+
+.exploded-ring-pulse {
+  animation: explodedPulseRing 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exploded-layer,
+  .exploded-float-a,
+  .exploded-float-b,
+  .exploded-ring-pulse {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
